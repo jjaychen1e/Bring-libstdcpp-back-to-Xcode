@@ -22,6 +22,6 @@ For more detail:
 
 ## How to run?
 ```
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/JJAYCHEN1e/Bring-libstdcpp-back-to-Xcode/master/run.sh)"
+/bin/bash -c "$(curl -fsSL https://cdn.jsdelivr.net/gh/JJAYCHEN1e/Bring-libstdcpp-back-to-Xcode/run.sh)"
 ```
 And then you should follow the hint, provide your Xcode.app path, like `/Applications/Xcode.app` or `/Applications/Xcode-beta.app` (Because as a developer, it's common to have various versions of Xcode app...). Everything else is done automatically.
