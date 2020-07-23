@@ -1,6 +1,6 @@
 # Bring libstdcpp back to Xcode
  
-When compiling with Xcode 10 or later, we got an error: `library not found for -lstdc++.6.0.9`. The reason is that Apple uses libc++ instead of libstdc++ in Xcode 10 or later. But many third-party libraries still uses libstdc++, the easiest way to compile our project is manually bring libstdc++ back to Xcode. So I provide a shell script that can automatically add libstdc++ to your Xcode.
+When compiling with Xcode 10 or later, we got an error: `library not found for -lstdc++.6.0.9`. The reason is that Apple uses libc++ instead of libstdc++ in Xcode 10 or later. But many third-party libraries still use libstdc++, the easiest way to compile our project is manually bring libstdc++ back to Xcode. So I provide a shell script that can automatically add libstdc++ to your Xcode.
 
 By the way, the CoreSimulator directory is changed in Xcode 11 or later, so I've add a special judge in the script.
 
