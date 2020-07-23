@@ -1,4 +1,6 @@
-read -p "Xcode app path: " xcodeAppPath 
+#!/usr/bin/env bash
+
+read -p "Xcode app path: " xcodeAppPath
 
 # App path not exist.
 if [ ! -d "$xcodeAppPath" ]
@@ -31,11 +33,12 @@ fi
 xcodeVersion=$(/usr/libexec/PlistBuddy -c "Print CFBundleShortVersionString" $xcodeAppPath/Contents/version.plist)
 echo "Detected Xcode version is: $xcodeVersion"
 
-# Download Files
+# Download and unzip files
 curl --retry 2 -o libstdc++.zip https://codeload.github.com/JJAYCHEN1e/Bring-libstdcpp-back-to-Xcode/zip/master
 
 unzip libstdc++.zip > /dev/null 
 
+# Copy files
 if [ $(echo "$xcodeVersion >= 11.0" | bc) == "1" ]
 then
 	cp ./Bring-libstdcpp-back-to-Xcode-master/CoreSimulator/libstdc++.dylib $xcodeAppPath/Contents/Developer/Platforms/iPhoneOS.platform/Library/Developer/CoreSimulator/Profiles/Runtimes/iOS.simruntime/Contents/Resources/RuntimeRoot/usr/lib
@@ -59,6 +62,7 @@ cp ./Bring-libstdcpp-back-to-Xcode-master/iPhoneSimulator.platform/libstdc++.tbd
 cp ./Bring-libstdcpp-back-to-Xcode-master/iPhoneSimulator.platform/libstdc++.6.tbd $xcodeAppPath/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator.sdk/usr/lib/
 cp ./Bring-libstdcpp-back-to-Xcode-master/iPhoneSimulator.platform/libstdc++.6.0.9.tbd $xcodeAppPath/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator.sdk/usr/lib/
 
+# Clean
 rm ./libstdc++.zip
 rm -rf ./Bring-libstdcpp-back-to-Xcode-master
 
