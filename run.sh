@@ -39,15 +39,15 @@ curl --retry 2 -o libstdc++.zip https://codeload.github.com/JJAYCHEN1e/Bring-lib
 unzip libstdc++.zip > /dev/null 
 
 # Copy files
-if [ $(echo "$xcodeVersion >= 11.0" | bc) == "1" ]
-then
-	sudo cp ./Bring-libstdcpp-back-to-Xcode-master/CoreSimulator/libstdc++.dylib $xcodeAppPath/Contents/Developer/Platforms/iPhoneOS.platform/Library/Developer/CoreSimulator/Profiles/Runtimes/iOS.simruntime/Contents/Resources/RuntimeRoot/usr/lib
-    sudo cp ./Bring-libstdcpp-back-to-Xcode-master/CoreSimulator/libstdc++.6.dylib $xcodeAppPath/Contents/Developer/Platforms/iPhoneOS.platform/Library/Developer/CoreSimulator/Profiles/Runtimes/iOS.simruntime/Contents/Resources/RuntimeRoot/usr/lib
-    sudo cp ./Bring-libstdcpp-back-to-Xcode-master/CoreSimulator/libstdc++.6.0.9.dylib $xcodeAppPath/Contents/Developer/Platforms/iPhoneOS.platform/Library/Developer/CoreSimulator/Profiles/Runtimes/iOS.simruntime/Contents/Resources/RuntimeRoot/usr/lib
-else
+if [ "$xcodeVersion" \< "11.0" ]
+then  
     sudo cp ./Bring-libstdcpp-back-to-Xcode-master/CoreSimulator/libstdc++.dylib $xcodeAppPath/Contents/Developer/Platforms/iPhoneOS.platform/Developer/Library/CoreSimulator/Profiles/Runtimes/iOS.simruntime/Contents/Resources/RuntimeRoot/usr/lib/
     sudo cp ./Bring-libstdcpp-back-to-Xcode-master/CoreSimulator/libstdc++.6.dylib $xcodeAppPath/Contents/Developer/Platforms/iPhoneOS.platform/Developer/Library/CoreSimulator/Profiles/Runtimes/iOS.simruntime/Contents/Resources/RuntimeRoot/usr/lib/
     sudo cp ./Bring-libstdcpp-back-to-Xcode-master/CoreSimulator/libstdc++.6.0.9.dylib $xcodeAppPath/Contents/Developer/Platforms/iPhoneOS.platform/Developer/Library/CoreSimulator/Profiles/Runtimes/iOS.simruntime/Contents/Resources/RuntimeRoot/usr/lib/
+else
+    sudo cp ./Bring-libstdcpp-back-to-Xcode-master/CoreSimulator/libstdc++.dylib $xcodeAppPath/Contents/Developer/Platforms/iPhoneOS.platform/Library/Developer/CoreSimulator/Profiles/Runtimes/iOS.simruntime/Contents/Resources/RuntimeRoot/usr/lib
+    sudo cp ./Bring-libstdcpp-back-to-Xcode-master/CoreSimulator/libstdc++.6.dylib $xcodeAppPath/Contents/Developer/Platforms/iPhoneOS.platform/Library/Developer/CoreSimulator/Profiles/Runtimes/iOS.simruntime/Contents/Resources/RuntimeRoot/usr/lib
+    sudo cp ./Bring-libstdcpp-back-to-Xcode-master/CoreSimulator/libstdc++.6.0.9.dylib $xcodeAppPath/Contents/Developer/Platforms/iPhoneOS.platform/Library/Developer/CoreSimulator/Profiles/Runtimes/iOS.simruntime/Contents/Resources/RuntimeRoot/usr/lib
 fi
 
 sudo cp ./Bring-libstdcpp-back-to-Xcode-master/MacOSX.platform/libstdc++.tbd $xcodeAppPath/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/lib/
